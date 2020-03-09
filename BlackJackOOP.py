@@ -102,13 +102,13 @@ class Hand:
             print('')
 
 
-class Bank:#allowing for the player to place a bet
+class Bank:  # allowing for the player to place a bet
     def __init__(self, total=100):
         self.total = total
         self.bet = 0
 
     def make_bet(self):
-
+        self.bet = 0#Setting the self.bet to 0 everytime this method is called so that your bet does't keep adding on top of each other over and over again 
         try:
             bet1 = int(input('How much do you want to bet? '))
 
@@ -144,14 +144,14 @@ class Game:
     def play(self):
 
         playing = True
-        self.player_bank = Bank()#Moved it here so that it won't constantly reset its bank value once the game starts, so the player can keep betting more and more till they run out of money, aka you win more you bet more
+        self.player_bank = Bank()  # Moved it here so that it won't constantly reset its bank value once the game starts, so the player can keep betting more and more till they run out of money, aka you win more you bet more
         while playing:
 
             self.deck = Deck()  # Creating the deck
             self.deck.shuffle()  # shuffling the deck
 
             self.player1 = Hand()
-            
+
             # initiates the hidding of the hand
             self.dealer1 = Hand(dealer=True)
 
@@ -249,7 +249,7 @@ class Game:
                     print('\n')
                     game_on = False
 
-                # Error occured when dealer was 21 and it said that player had won, the self.dealer1.value < 21 makes sure that it doesn't happen
+                # Error occured when dealer was 21 and it said that player had won, the self.dealer1.value < 21 makes sure that it doesn't happen has been FIXED! by changing some values in the class
                 if self.player1.value > self.dealer1.value and self.player1.value < 21 and self.dealer1.value < 21:
                     print('\n'*100)
                     print(f'{name} has won! Great Job!')
@@ -271,9 +271,6 @@ class Game:
                     print('Your total: ', self.player_bank.total)
                     print('\n')
                     game_on = False
-
-
-
 
 
 if __name__ == '__main__':
