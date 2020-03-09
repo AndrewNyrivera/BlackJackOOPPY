@@ -144,14 +144,14 @@ class Game:
     def play(self):
 
         playing = True
-
+        self.player_bank = Bank()#Moved it here so that it won't constantly reset its bank value once the game starts, so the player can keep betting more and more till they run out of money, aka you win more you bet more
         while playing:
 
             self.deck = Deck()  # Creating the deck
             self.deck.shuffle()  # shuffling the deck
 
             self.player1 = Hand()
-            self.player_bank = Bank()
+            
             # initiates the hidding of the hand
             self.dealer1 = Hand(dealer=True)
 
@@ -279,4 +279,3 @@ class Game:
 if __name__ == '__main__':
     g = Game()  # initiates the game
     g.play()  # starts the game!
-
